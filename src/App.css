@@ -1,38 +1,149 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    /* background-color: #0b0b0b; */
+    padding: 15px;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.App > h1{
+    font-weight: 500;
+    background: linear-gradient(135deg, #fa00ff, #00e0ff 50%, #fa00ff);
+    transition: color .1s ease-in-out, opacity .1s ease-in-out;
+    -webkit-background-clip: text;
+    animation: gradient-h1 3s linear infinite alternate-reverse;
+    color: transparent;
+    background-size: 500%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes gradient-h1{
+    0%{
+        background-position: 100% 0;
+    }
+    100%{
+        background-position: 12% 100%;
+    }
 }
 
-.App-link {
-  color: #61dafb;
+.App > h1:hover{
+    user-select: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#searchField{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    box-sizing: border-box;
+}
+#searchBar{
+    flex-grow: 0.6;
+    border: none;
+    box-shadow: 0px 0px 5px grey;
+    font-size: 16px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+#searchBar::placeholder{
+    font-weight: 400;
+}
+#searchBar:focus{
+    box-shadow: 0px 0px 8px rgb(88, 88, 88);
+    outline: none;
+}
+.sort{
+    display: flex;
+    gap: 10px;
+}
+#load-image{
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 50%;
+    display: none;
+}
+button:hover{
+    cursor: pointer;
+}
+#searchBar, #load-image{
+    padding: 10px;
+}
+
+.sort-btn{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px grey;
+}
+
+.sort-btn:hover{
+    box-shadow: 0px 0px 8px rgb(88, 88, 88);
+}
+
+.active-btn{
+    background: black;
+    color: white;
+}
+
+
+.gallery{
+    display: grid;
+    width: 100%;
+    gap: 10px;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-auto-rows: minmax(250px, auto);
+    grid-auto-flow: dense;
+}
+.gallery > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.gallery > div > img{
+    width: 100%;
+    height: 100%;
+    scale: 1.1;
+    object-fit: cover;
+    /* filter: blur(2px); */
+    transition: 0.2s ease-in;
+}
+
+.gallery > div > .img:hover{
+    scale: 1;
+    cursor: pointer;
+    /* filter: blur(0px); */
+}
+
+.gallery .tall{
+    grid-row: span 2;
+}
+
+@media (width <= 800px) {
+    .gallery{
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }
